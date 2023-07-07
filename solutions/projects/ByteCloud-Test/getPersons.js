@@ -17,6 +17,9 @@ const maxSurnames = 100;
 const maxPatients = 400;
 const maxDoctors = 50;
 
+const startShiftHour = 6;
+const shiftDuration = 14;
+
 const resultReestr = {};
 
 const surnames = person.getUnsortedNumberOfSurnames(longListSurnames, maxSurnames);
@@ -46,8 +49,8 @@ const it_idsPat = idsPatientsSet.values();
 const it_idsDoc = idsDoctorsSet.values();
 
 // Get doctor's and patient's objects with all properties
-resultReestr.patients = person.fillPersonAdditionalParams(patients, it_idsPat);
-resultReestr.doctors = person.fillPersonAdditionalParams(doctors, it_idsDoc);
+resultReestr.patients = person.fillPersonAdditionalParams(patients, it_idsPat, startShiftHour, shiftDuration);
+resultReestr.doctors = person.fillPersonAdditionalParams(doctors, it_idsDoc, startShiftHour, shiftDuration);
 
 console.log("\n\nPatients");
 console.log(resultReestr.patients);

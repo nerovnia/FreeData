@@ -34,15 +34,29 @@ function getUnsortedNumberOfSurnames(surnames, maxNumber) {
  * Get person's card
  ******************************************************
  * @name fillPersonAdditionalParams
- * @param persons - 
- * @param it - Set iterator 
+ * @param persons - array of persons
+ * @param it - person Set iterator 
+ * @param startShiftHour - an hour from shift is start  
+ * @param shiftDuration - shift duration
  * @return person's card with parameters: id, hours, birthDate, name
  */
-function fillPersonAdditionalParams(persons, it) {
+function fillPersonAdditionalParams(persons, it, startShiftHour, shiftDuration) {
 
   return persons.map(patient => {
     patient.id = it.next().value;
-    patient.hours = `${getRandomInt(14) + 6}-${getRandomInt(14) + 6}`;
+    let startHour = getRandomInt(shiftDuration) + startShiftHour;
+    let endHour = getRandomInt(shiftDuration) + startShiftHour;
+    if (startHour > endHour) {
+      [startHour, endHour] = [endHour, startHour];
+    }
+    if (startHour === endHour) {
+      if (startHour < (startShiftHour + shiftDuration)) {
+        endHour += 1;
+      } else {
+        startHour -= 1;
+      }
+    }
+    patient.hours = `${startHour}-${endHour}`;
     const month = (getRandomInt(11) + 1).toString().padStart(2, '0');
     const day = ((month === 2) ? getRandomInt(27) + 1 : getRandomInt(29) + 1).toString().padStart(2, '0');
     patient.birthDate = `${day}.${month}.${new Date().getFullYear() - getRandomInt(93)}`;
