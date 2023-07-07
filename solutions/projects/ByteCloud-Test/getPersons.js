@@ -18,6 +18,12 @@ const maxSurnames = 100;
 const maxPatients = 400;
 const maxDoctors = 50;
 
+const doctorStartOld = 26;
+const doctorEndOld = 60;
+
+const patientStartOld = 0;
+const patientEndOld = 99;
+
 const startShiftHour = 6;
 const shiftDuration = 14;
 
@@ -53,7 +59,12 @@ const it_idsPat = idsPatientsSet.values();
 const it_idsDoc = idsDoctorsSet.values();
 
 // Get doctor's and patient's objects with all properties
-resultReestr.patients = person.fillPersonAdditionalParams(patients, it_idsPat, startShiftHour, shiftDuration);
-resultReestr.doctors = person.fillPersonAdditionalParams(doctors, it_idsDoc, startShiftHour, shiftDuration);
+resultReestr.patients = person.fillPersonAdditionalParams(patients, it_idsPat, startShiftHour, shiftDuration, patientStartOld, patientEndOld);
+resultReestr.doctors = person.fillPersonAdditionalParams(doctors, it_idsDoc, startShiftHour, shiftDuration, doctorStartOld, doctorEndOld);
 
 saveFile(pathToBuildDirectory, nameResultJSONFile, JSON.stringify(resultReestr));
+
+
+
+
+
