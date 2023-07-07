@@ -1,7 +1,7 @@
 /******************************************************
  * Utilite: Test data provider
  ******************************************************
- * For project: Medicine Application-Test
+ * For project: Medicine Application
  * Volodymyr Nerovnia (c) 2023
  ******************************************************
  * Under MIT license
@@ -11,6 +11,7 @@ const names = require('../../../en/person/names');
 const longListSurnames = require('../../../en/person/surnames');
 const { getRandomInt } = require('../../../utilites/math');
 const person = require('../../../utilites/person');
+const { saveFile } = require('../../../utilites/file');
 
 // Change this constant, and set count of persons what do you want to get
 const maxSurnames = 100;
@@ -19,6 +20,9 @@ const maxDoctors = 50;
 
 const startShiftHour = 6;
 const shiftDuration = 14;
+
+const pathToBuildDirectory = './solutions/projects/ByteCloud-Test/build/';
+const nameResultJSONFile = 'right-data.json' 
 
 const resultReestr = {};
 
@@ -52,8 +56,4 @@ const it_idsDoc = idsDoctorsSet.values();
 resultReestr.patients = person.fillPersonAdditionalParams(patients, it_idsPat, startShiftHour, shiftDuration);
 resultReestr.doctors = person.fillPersonAdditionalParams(doctors, it_idsDoc, startShiftHour, shiftDuration);
 
-console.log("\n\nPatients");
-console.log(resultReestr.patients);
-
-console.log("\n\nDoctors");
-console.log(resultReestr.doctors);
+saveFile(pathToBuildDirectory, nameResultJSONFile, JSON.stringify(resultReestr));

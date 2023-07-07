@@ -1,7 +1,7 @@
 /******************************************************
- * Module: Test data compilator
+ * Module: Functions for working with personal data
  ******************************************************
- * For project: Medicine Application-Test
+ * For project: Free data
  * Volodymyr Nerovnia (c) 2023
  ******************************************************
  * Under MIT license
