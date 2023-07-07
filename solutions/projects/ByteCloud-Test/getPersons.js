@@ -1,7 +1,7 @@
 /******************************************************
  * Utilite: Test data provider
  ******************************************************
- * For project: ByteCloud-Test
+ * For project: Medicine Application-Test
  * Volodymyr Nerovnia (c) 2023
  ******************************************************
  * Under MIT license

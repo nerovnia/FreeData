@@ -1,7 +1,7 @@
 /******************************************************
  * Module: Test data compilator
  ******************************************************
- * For project: ByteCloud-Test
+ * For project: Medicine Application-Test
  * Volodymyr Nerovnia (c) 2023
  ******************************************************
  * Under MIT license
