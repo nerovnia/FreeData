@@ -1,4 +1,4 @@
-exports.surnames = [
+module.exports = [
   "Abbas",
   "Abbey",
   "Abbott",

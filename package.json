@@ -1,0 +1,20 @@
+{
+  "name": "freedata",
+  "version": "0.0.1",
+  "description": "Free data",
+  "main": "index.js",
+  "scripts": {
+    "getPersons": "node ./solutions/projects/ByteCloud-Test/getPersons.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nerovnia/FreeData.git"
+  },
+  "author": "Volodymyr Nerovnia <nerv@i.ua>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nerovnia/FreeData/issues"
+  },
+  "homepage": "https://github.com/nerovnia/FreeData#readme"
+}
