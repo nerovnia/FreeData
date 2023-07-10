@@ -31,43 +31,6 @@ function getUnsortedNumberOfSurnames(surnames, maxNumber) {
 }
 
 /******************************************************
- * Get person's card
- ******************************************************
- * @name fillPersonAdditionalParams
- * @param persons - array of persons
- * @param it - person Set iterator 
- * @param startShiftHour - an hour from shift is start  
- * @param shiftDuration - shift duration
- * @param personStartOld - starting age that a person can have today
- * @param personEndOld - age limit that a person can have today
- * @return person's card with parameters: id, hours, birthDate, name
- */
-function fillPersonAdditionalParams(persons, it, startShiftHour, shiftDuration, personStartOld, personEndOld) {
-
-  return persons.map(patient => {
-    patient.id = it.next().value;
-    let startHour = getRandomInt(shiftDuration) + startShiftHour;
-    let endHour = getRandomInt(shiftDuration) + startShiftHour;
-    if (startHour > endHour) {
-      [startHour, endHour] = [endHour, startHour];
-    }
-    if (startHour === endHour) {
-      if (startHour < (startShiftHour + shiftDuration)) {
-        endHour += 1;
-      } else {
-        startHour -= 1;
-      }
-    }
-    patient.hours = `${startHour}-${endHour}`;
-    const month = (getRandomInt(11) + 1).toString().padStart(2, '0');
-    const day = ((month === 2) ? getRandomInt(27) + 1 : getRandomInt(29) + 1).toString().padStart(2, '0');
-    patient.birthDate = `${day}.${month}.${new Date().getFullYear() - personStartOld - getRandomInt(personEndOld - personStartOld)}`;
-
-    return patient;
-  })
-}
-
-/******************************************************
  *  Filter names by gender
  ******************************************************
  * @name filterNames
@@ -98,6 +61,45 @@ function filterNames(names, gender) {
       surname: surnames.at(rand)
     };
   });
+}
+
+/******************************************************
+ * Get person's card
+ ******************************************************
+ * @name fillPersonAdditionalParams
+ * @param persons - array of persons
+ * @param it - person Set iterator 
+ * @param startShiftHour - an hour from shift is start  
+ * @param shiftDuration - shift duration
+ * @param minAvaluableHours - a minimum the number of hours than person is available
+ * @param maxAvaluableHours - a maximum the number of hours than person is available
+ * @param personStartOld - starting age that a person can have today
+ * @param personEndOld - age limit that a person can have today
+ * @return person's card with parameters: id, hours, birthDate, name
+ */
+ function fillPersonAdditionalParams(persons, it, startShiftHour, shiftDuration, minAvaluableHours, maxAvaluableHours, personStartOld, personEndOld) {
+  return persons.map(patient => {
+    patient.id = it.next().value;
+
+    if (minAvaluableHours > shiftDuration) {
+      minAvaluableHours = shiftDuration - 1;
+    }
+    if (maxAvaluableHours > shiftDuration) {
+      maxAvaluableHours = shiftDuration;
+    }
+    if (minAvaluableHours > maxAvaluableHours) {
+      [minAvaluableHours, maxAvaluableHours] = [maxAvaluableHours, minAvaluableHours];
+    }
+    const realShiftDuration = getRandomInt(maxAvaluableHours - minAvaluableHours) + minAvaluableHours;
+    const startHour = getRandomInt(shiftDuration - realShiftDuration) + startShiftHour;
+    const endHour = startHour + realShiftDuration;
+    patient.hours = `${startHour}-${endHour}`;
+    const month = (getRandomInt(11) + 1).toString().padStart(2, '0');
+    const day = ((month === 2) ? getRandomInt(27) + 1 : getRandomInt(29) + 1).toString().padStart(2, '0');
+    patient.birthDate = `${day}.${month}.${new Date().getFullYear() - personStartOld - getRandomInt(personEndOld - personStartOld)}`;
+
+    return patient;
+  })
 }
 
 module.exports = { 

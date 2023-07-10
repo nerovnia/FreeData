@@ -27,6 +27,12 @@ const patientEndOld = 99;
 const startShiftHour = 6;
 const shiftDuration = 14;
 
+const minPatientAvaluableHours = 1;
+const maxPatientAvaluableHours = shiftDuration;
+
+const minDoctorAvaluableHours = 4;
+const maxDoctorAvaluableHours = 8;
+
 const pathToBuildDirectory = './solutions/projects/ByteCloud-Test/build/';
 const nameResultJSONFile = 'right-data.json' 
 
@@ -59,8 +65,8 @@ const it_idsPat = idsPatientsSet.values();
 const it_idsDoc = idsDoctorsSet.values();
 
 // Get doctor's and patient's objects with all properties
-resultReestr.patients = person.fillPersonAdditionalParams(patients, it_idsPat, startShiftHour, shiftDuration, patientStartOld, patientEndOld);
-resultReestr.doctors = person.fillPersonAdditionalParams(doctors, it_idsDoc, startShiftHour, shiftDuration, doctorStartOld, doctorEndOld);
+resultReestr.patients = person.fillPersonAdditionalParams(patients, it_idsPat, startShiftHour, shiftDuration, minPatientAvaluableHours, maxPatientAvaluableHours, patientStartOld, patientEndOld);
+resultReestr.doctors = person.fillPersonAdditionalParams(doctors, it_idsDoc, startShiftHour, shiftDuration, minDoctorAvaluableHours, maxDoctorAvaluableHours, doctorStartOld, doctorEndOld);
 
 saveFile(pathToBuildDirectory, nameResultJSONFile, JSON.stringify(resultReestr));
 

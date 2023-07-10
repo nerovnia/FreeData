@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "getPersons": "node ./solutions/projects/ByteCloud-Test/getPersons.js",
+    "getPersonsDev": "node ./solutions/projects/ByteCloud-Test/getPersons.js --inspect",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
